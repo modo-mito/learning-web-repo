@@ -1,0 +1,8 @@
+const myNoun = "dog";
+const myAdjective = "big";
+const myVerb = "ran";
+const myAdverb = "quickly";
+
+// Only change code below this line
+const wordBlanks = 'I am ' + myAdjective + '. I have a ' + myNoun + '. I ' + myVerb + ' someone ' + myAdverb + ' aproaches.'; // Change this line
+// Only change code above this line
