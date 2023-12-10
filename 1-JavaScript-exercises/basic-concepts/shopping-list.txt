@@ -1,0 +1,7 @@
+const myList = [
+  ["Raw Iron", 32],
+  ["Coblestone", 128],
+  ["Redstone", 48],
+  ["Gravel", 16],
+  ["Stone Pickaxe", 1],
+];
