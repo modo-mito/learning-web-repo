@@ -1,0 +1,7 @@
+function titleCase(str) {
+  const rgx = /^[a-z]| [a-z]/g;
+  str = str.toLowerCase();
+  return str.replace(rgx,m => m.toUpperCase());
+}
+
+titleCase("I'm a little tea pot");
