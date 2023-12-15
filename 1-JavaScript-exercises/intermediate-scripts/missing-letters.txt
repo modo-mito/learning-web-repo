@@ -1,0 +1,13 @@
+function fearNotLetter(str) {
+  const alph = "abcdefghijklmnopqrstuvwxyz";
+  const a = alph.indexOf(str.charAt(0));
+
+  for (let i = 0; i <= str.length; i++) {
+    if (str[i] !== alph[a+i]) {
+      return alph[a+i];
+    }
+  }
+  return undefined;
+}
+
+fearNotLetter("abce");

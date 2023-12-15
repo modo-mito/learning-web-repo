@@ -1,0 +1,20 @@
+function translatePigLatin(str) {
+  const rgx = /[^aeiou]/;
+  let sss = "";
+
+  if(rgx.test(str.charAt(0)) === false) {
+    return str.concat("way");
+  }
+
+  let i = 0;
+  for (; i < str.length; i++) {
+    if ( rgx.test(str.charAt(i)) ) {
+      sss += str.charAt(i);
+    } else {
+      break;
+    }
+  }
+  return str.slice(i).concat(sss,"ay");
+}
+
+translatePigLatin("algorithm");

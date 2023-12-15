@@ -1,0 +1,29 @@
+function smallestCommons(arr) {
+  const [a,b] = arr[0] < arr[1] ? arr : [arr[1], arr[0]];
+  const range = [];
+  // make all divisors for test
+  for (let i = a+1; i <= b; i++) {
+    range.push(i);
+  }
+  // test if candidate is divisible by all in range list
+  const evenDiv = function(num) {
+    let acc = true;
+    for (let i = 0; i < range.length; i++){
+      acc = acc && (num%range[i]) === 0;
+    }
+    
+    return acc;
+  }
+  // builds the common-multiple cadidate until test is true
+  let mlt = 0;
+  for (let i = 0; i < 500000; i++) {
+    mlt += a;
+    if(evenDiv(mlt)){
+      break;
+    }
+  }
+  
+  return mlt;
+}
+
+smallestCommons([23,18]);

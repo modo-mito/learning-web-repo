@@ -1,0 +1,13 @@
+function sumFibs(num) {
+  let [y, z] = [0, 1];
+  let acc = 0;
+  while(z <= num) {
+    if(z%2) {
+      acc += z;
+    }
+    [y, z] = [z, y + z];
+  }
+  return acc;
+}
+
+sumFibs(4);

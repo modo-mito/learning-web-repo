@@ -1,0 +1,26 @@
+function sumPrimes(num) {
+  let primes = [];
+  //let atempts = 0;
+  let acc = 0;
+  for (let i = 2; i <= num; i++) {
+    let isP = true;
+    //console.log(i, primes);
+    for (let j = 0; j < primes.length && isP && primes[j] <= Math.sqrt(i); j++) {
+      let d = i/primes[j];
+      //atempts++;
+      //console.log(d-Math.trunc(d))
+      if ( d - Math.trunc(d) === 0){
+        isP = false;
+      }
+    }
+    if (isP) {
+      acc += i;
+      primes.push(i);
+    }
+  }
+  //console.log(atempts, primes.length, primes)
+  //console.log(acc);
+  return acc;
+}
+
+sumPrimes(10);

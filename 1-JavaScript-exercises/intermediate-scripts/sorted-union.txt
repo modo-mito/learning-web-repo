@@ -1,0 +1,15 @@
+function uniteUnique(...arr) {
+  const newArr = [];
+  arr.forEach(
+    a => a.forEach(
+      e => {
+        if (!newArr.includes(e)) {
+          newArr.push(e)
+        }
+      }
+    )
+  )
+  return newArr;
+}
+
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);

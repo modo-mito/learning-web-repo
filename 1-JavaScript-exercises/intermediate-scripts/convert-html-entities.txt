@@ -1,0 +1,19 @@
+function convertHTML(str) {
+  const pairs = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&apos;"
+  }
+  const props = Object.getOwnPropertyNames(pairs);
+  let sss = str.slice();
+
+  props.forEach(p => {
+    sss = sss.replaceAll(p,pairs[p]);
+  })
+  
+  return sss;
+}
+
+convertHTML("Dolce & Gabbana");

@@ -1,0 +1,12 @@
+function dropElements(arr, func) {
+  let last = false;
+
+  let newArr = arr.filter((e) => {
+    last = last||func(e);
+    return last;
+  })
+    
+  return newArr;
+}
+
+dropElements([1, 2, 3], function(n) {return n < 3; });

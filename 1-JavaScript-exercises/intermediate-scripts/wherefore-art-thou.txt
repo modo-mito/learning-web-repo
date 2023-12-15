@@ -1,0 +1,10 @@
+function whatIsInAName(collection, source) {
+  const props = Object.getOwnPropertyNames(source);
+  return collection.filter(e => 
+    props.every(p =>
+      e.hasOwnProperty(p) && e[p] === source[p]
+    )
+  );
+}
+
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });

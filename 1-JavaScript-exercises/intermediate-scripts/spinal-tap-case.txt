@@ -1,0 +1,9 @@
+function spinalCase(str) {
+  const rgx = /\s|_|-/g
+  const rgx1 = /([\S][a-z]*)/g;
+  let sss = [];
+  str.split(rgx).forEach(e => sss.push(...e.split(rgx1)));
+  return sss.filter(e => e.length).join("-").toLowerCase();
+}
+
+spinalCase('This Is Spinal Tap');

@@ -1,0 +1,20 @@
+function myReplace(str, before, after) {
+  let proper = '';
+
+  const isCapitalized = function(word) {
+    return word !== word.toLowerCase();
+  }
+  const capitalize = function(word) {
+    return word.charAt(0).toUpperCase().concat(word.slice(1));
+  }
+
+  if (isCapitalized(before)) {
+    proper = capitalize(after);
+  } else {
+    proper = after.toLowerCase();
+  }
+  
+  return str.replace(before, proper);
+}
+
+myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
