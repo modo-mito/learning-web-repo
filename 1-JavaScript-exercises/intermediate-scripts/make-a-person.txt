@@ -1,0 +1,23 @@
+const Person = function(first, last) {
+  let firstName = first;
+  let lastName = last;
+  this.getFirstName = function() {
+    return firstName;
+  };
+  this.setFirstName = function(first) {
+    firstName = first;
+  };
+  this.getLastName = function() {
+    return lastName;
+  };
+  this.setLastName = function(last) {
+    lastName = last;
+  };
+  this.getFullName = function() {
+    return firstName + ' ' + lastName;
+  };
+  this.setFullName = function(first, last) {
+    firstName = first;
+    lastName = last;
+  };
+};

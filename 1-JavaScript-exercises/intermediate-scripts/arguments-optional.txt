@@ -1,0 +1,20 @@
+function addTogether(...numbers) {
+  if (numbers.every(n => typeof n === 'number')){
+    //console.log('all number')
+    //console.log(numbers.length > 1)
+    if (numbers.length > 1){
+      //console.log('in 2')
+      return numbers[0] + numbers[1];
+    }
+    return n2 => {
+      if (typeof n2 === 'number'){
+        return numbers[0] + n2
+      }
+      return undefined;
+    };
+  }
+  //console.log(undefined,"response")
+  return undefined;
+}
+
+addTogether(2,3);
