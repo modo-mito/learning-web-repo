@@ -1,0 +1,48 @@
+<DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Survey Form - Certification Project</title>
+  </head>
+  <body>
+    <h1 id="title">Legends Talk</h1>
+    <p id="description">Thank you for being with us. We appreciate your Feedback.</p>
+    <form id="survey-form">
+      <label id="name-label" for="name" >Name<input required id="name" type="text" placeholder="Your name" ></label>
+      <label id="email-label" for="email">Email<input required id="email" type="email" placeholder="Your email"></label>
+      <label id="number-label" for="number">Age<input id="number" type="number" placeholder="Your age" min="0" max="120"></label>
+      <hr>
+      <label for="dropdown">Wich conference you attended to:
+      <select id="dropdown">
+        <option>Select ...</option>
+        <option>Dr. Eleven - How to be Powerfull</option>
+        <option>Dr. Prada - Dangers of Chemicals</option>
+        <option>Dr. Chan - Movement is Fun</option>
+      </select></label>
+      <hr>
+      <legend>Would you come again and bring a friend?</legend>
+      <input class="inline" name="bring-friend" type="radio" value="yes"><label> Yes</label>
+      <input name="bring-friend" type="radio" value="no"><label> No</label>
+      <hr>
+        <legend>Which of the following would you participate?</legend>
+        <div class="check-holder">
+          <label class=".check-label">
+          <input type="checkbox" value="0">
+            How to be Happier with Animes</label>
+          <label class=".check-label">
+          <input type="checkbox" value="1">
+            Starting Calisthenics for Heavy Persons</label>
+          <label class=".check-label">
+          <input type="checkbox" value="2">
+            Developing the Infinite Mind</label>
+        </div>
+      <hr>
+      <p>Anything that we could do better?</p>
+      <textarea placeholder="Maybe if..."></textarea>
+      <hr>
+      <input type="submit" id="submit" value="Submit">
+    </form>
+  </body>
+</html>

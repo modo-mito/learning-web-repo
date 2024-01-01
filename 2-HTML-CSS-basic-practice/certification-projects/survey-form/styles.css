@@ -1,0 +1,67 @@
+body {
+  /*background: linear-gradient(360deg,#ddf,#eff);*/
+  background-color: #D1E8E2;
+  font-family: Tahoma;
+}
+#title, #description {
+  text-align: center;
+}
+#description {
+  font-size: 1.1rem;
+}
+#survey-form{
+  background: linear-gradient(180deg, #eee,#ddd);
+  padding: 1.5em 2em;
+  width: 60vw;
+  min-width: 400px;
+  max-width: 600px;
+  margin: auto;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+
+}
+#name, #email, #number, select{
+  margin: 10px 0 0 0;
+  width: 100%;
+  min-height: 2em;
+  }
+#name-label, #email-label, #number-label {
+  display: block;
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+  
+#dropdown {
+  height: 1.75rem;
+  border: 1px solid gray;
+  border-radius: 0;
+  background-color: white;
+}
+#submit{
+  display: block;
+  margin: auto auto;
+  font-size: 1.1rem;
+  padding: 1% 10%;
+  border-radius: 0;
+  border: 1px solid gray;
+}
+
+hr {
+  margin: 12px 0;
+  border: 1px solid #00000022;
+}
+textarea {
+  width: 100%;
+  font-size: 16px;
+}
+legend {
+  margin: 0 0 0.5rem 0;
+}
+.check-holder label {
+  /*border: 1px solid blue;*/
+  display: block;
+  margin: 5px 0;
+  font-size: 1.05em;
+  /*display: block;*/
+  /*width: 100%;*/
+}
