@@ -1,0 +1,31 @@
+function convertToRoman(num) {
+  const table = [
+   [1000,'M'],
+   [900,'CM'],
+   [500,'D'],
+   [400,'CD'],
+   [100,'C'],
+   [90,'XC'],
+   [50,'L'],
+   [40,'XL'],
+   [10,'X'],
+   [9,'IX'],
+   [5,'V'],
+   [4,'IV'],
+   [1,'I']
+  ];
+
+  let rom = '';
+  let tst = 0;
+  
+  while(num >  0 && tst < table.length) {
+    if(num >= table[tst][0]) {
+      num -= table[tst][0];
+      rom += table[tst][1];
+      continue;
+    }
+    tst++;
+  }
+  return rom;
+}
+convertToRoman(36);
