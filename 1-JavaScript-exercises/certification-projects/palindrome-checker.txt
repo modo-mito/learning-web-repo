@@ -1,0 +1,16 @@
+function palindrome(str) {
+  let sss = str.slice().toLowerCase().replaceAll(/\s|[^a-z0-9]/g,'')
+  let final = sss.length - 1;
+
+  for (let i = 0; i < sss.length/2; i++) {
+    if (sss.charAt(i) !== sss.charAt(final - i)) {
+      //console.log(str, sss, false)
+      return false;
+    }
+  }
+
+  //console.log(str, sss, true)
+  return true;
+}
+
+palindrome("eye");
