@@ -1,0 +1,23 @@
+function rot13(str) {
+  const alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const rgx = /[A-Z]/;
+
+  const convert = function(c) {
+    let idx = alph.indexOf(c);
+    if (idx > 12) {
+      return alph[idx-13]
+    }
+    return alph[idx+13];
+  }
+
+  let sss = str.split('').map(c => {
+    if (rgx.test(c)){
+      return convert(c)
+    }
+    return c;
+  }).join('');
+
+  return sss;
+}
+
+rot13("SERR PBQR PNZC");
