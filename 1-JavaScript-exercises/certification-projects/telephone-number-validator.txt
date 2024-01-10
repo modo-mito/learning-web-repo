@@ -1,0 +1,6 @@
+function telephoneCheck(str) {
+  let rgx = /^(1 {0,1}){0,1}\d{3}([ -]){0,1}\d{3}\2\d{4}$|^(1 {0,1}){0,1}\(\d{3}\)[ ]{0,1}\d{3}[ -]{0,1}\d{4}$/;
+  return rgx.test(str);
+}
+
+telephoneCheck("555-555-5555");
