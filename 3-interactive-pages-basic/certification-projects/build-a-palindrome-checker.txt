@@ -1,0 +1,142 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Palindrome Checker - Certificate Project</title>
+  </head>
+  <body>
+    <main id="container">
+    <div id="div-container">
+      <h1 id="title">Palindrome Checker</h1>
+      <p id="definition">Palindrome, in this context, is a symmetric sequence of characters. Puctuatin, spaces and symbols are not considered.</p>
+      <label id="text-input-lb" for="text-input" >Text to check:</label>
+      <input id="text-input" />
+      <button id="check-btn" type="button">Check</button>
+      <div id="result" class="">
+        <p id="og-input">arst</p>
+          <p id="answer">arst</p>
+      </div>
+  </div>
+  <script src="./script.js" defer></script>
+  </main>
+  </body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+* {
+  margin: 0;
+  padding: 0;
+  /*border: 1px solid red;*/
+}
+
+body {
+  background-color: #d3ebf5;
+  font-family: sans-serif;
+}
+
+#container {
+  width: 100%;
+  min-height: 100vh;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#div-container {
+  padding: 3rem;
+}
+
+#title {
+  text-align: center;
+}
+
+#definition {
+  min-width: 470px;
+  margin: 1rem;
+  margin-bottom: 2rem;
+}
+
+#text-input-lb {
+  margin-left: 1rem;
+}
+
+#text-input {
+  display: block;
+  width: 100%;
+  min-height: 2rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+#check-btn {
+  padding: 0.5em 1em;
+  display: block;
+  border-radius: 0;
+  border: 3px solid black;
+  margin: 1rem auto;
+}
+
+#result {
+  border: 1px solid black;
+  /*min-height: 2rem;*/
+  background-color: #eee;
+  padding: 0.75rem;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+#og-input {
+  font-weight: bold;
+}
+
+** end of undefined **
+
+** start of undefined **
+
+const textInput = document.getElementById('text-input');
+const checkBtn = document.getElementById('check-btn');
+const result = document.getElementById('result');
+
+
+
+const checkPalindrome = (str) => {
+  const cleanStr = str.match(/[a-z0-9]/gi).join('').toLowerCase();
+  const middle = Math.floor(str.length / 2);
+  for (let i = 0; i < middle; i++) {
+    if (cleanStr[i] !== cleanStr[cleanStr.length - i - 1]) {
+      return false;
+    }
+  }
+  return true;
+};
+
+const updateResult = () => {
+  if (!textInput.value) {
+    alert('Please input a value');
+    return;
+  }
+  result.classList.remove('hidden');
+  result.textContent = textInput.value;
+  result.textContent += checkPalindrome(textInput.value) ? 
+  " is a palindrome" :
+  " is not a palindrome";
+  textInput.value = '';
+};
+
+checkBtn.addEventListener('click', updateResult);
+
+** end of undefined **
+
