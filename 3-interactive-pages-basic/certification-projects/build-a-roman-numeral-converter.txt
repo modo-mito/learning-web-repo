@@ -1,0 +1,145 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Roman Numeral Converter - Certification Project</title>
+  </head>
+  <body>
+    <main id="container">
+      <div id="div-container">
+        <h1>Roman Numeral Converter</h1>
+        <label for="number" id="number-lb">Number to convert</label>
+        <input id="number" type="number" >
+        <button id="convert-btn" type="button" >Convert</button>
+        <div id="output"></div>
+      </div>
+    </main>
+    <script src="./script.js" defer></script>
+  </body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f4f4c1;
+  font-family: sans-serif;
+}
+
+#container {
+  width: 100%;
+  min-height: 100vh;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#div-container {
+  padding: 3rem;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+#number-lb {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
+#number {
+  display: block;
+  width: 75%;
+  min-height: 2rem;
+  padding: 0.5rem;
+  margin: auto;
+  margin-top: 0.5rem;
+}
+#convert-btn {
+  width: 75%;
+  padding: 0.5em 1em;
+  display: block;
+  border-radius: 0;
+  border: 3px solid;
+  margin: 1rem auto;
+  font-size: 1rem;
+  background-color: #fff8;
+  font-weight: bold;
+  transition: 450ms;
+}
+#convert-btn:hover {
+  color: #d3d346;
+  background-color: #686853;
+}
+#output {
+  border: 1px solid black;
+  width: 75%;
+  min-height: 1rem;
+  background-color: #fff8;
+  padding: 0.75rem 0;
+  text-align: center;
+  /*width: 80%;*/
+  margin: 1rem auto ;
+}
+
+** end of undefined **
+
+** start of undefined **
+
+const numberInput = document.getElementById('number');
+const convertBtn = document.getElementById('convert-btn');
+const output = document.getElementById('output');
+const table = [['M', 1000],['CM', 900],['D', 500],['CD', 400],['C', 100],['XC', 90],['L', 50],['XL', 40],['X', 10],['IX', 9],['V', 5],['IV', 4],['I', 1]];
+
+console.log('loaded')
+
+
+const romanNumeral = (num) => {
+  let rom = '';
+  let tst = 0;
+  while (num >  0 && tst < table.length) {
+    if (num >= table[tst][1]) {
+      num -= table[tst][1];
+      rom += table[tst][0];
+      continue;
+    }
+    tst++;
+  }
+  return rom;
+};
+
+const updateOutput = () => {
+  console.log(numberInput.value)
+  if (!numberInput.value) {
+    output.textContent = 'Please enter a valid number';
+    return;
+  }
+  const number = Number(numberInput.value);
+  console.log(number);
+  if (number < 1) {
+    output.textContent = 'Please enter a number greater than or equal to 1';
+    return;
+  }
+  if (number >= 4000) {
+    output.textContent = 'Please enter a number less than or equal to 3999';
+    return;
+  }
+  output.textContent = romanNumeral(number);
+};
+
+convertBtn.addEventListener('click', updateOutput);
+
+** end of undefined **
+
