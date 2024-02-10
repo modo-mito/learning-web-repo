@@ -1,0 +1,265 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="styleSheet" href="./styles.css" />
+    <title>Cash Register - Certification Project</title>
+  </head>
+  <body>
+    <main id="container">
+      <div id="div-container">
+        <h1>Cash Register</h1>
+        <div id="change-due">Change Due</div>
+        <div class="row">
+          <div class="row-item">
+            <p>Total Price</p>
+            <p>$ <span id="price">1.87</span></p>
+          </div>
+          <div class="row-item">
+        <label for="cash" id="cash-lb" >Customer cash</label>
+        <input id="cash" type="number">
+          </div>
+        </div>
+        <button id="purchase-btn" type="button">Purchase</button>
+        <div></div>
+      </div>
+    </main>
+  <script src="./script.js" defer></script>
+  </body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #cff9f4;
+  font-family: sans-serif;
+}
+
+#container {
+  width: 100%;
+  min-height: 100vh;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#div-container {
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+}
+
+#change-due {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid;
+  text-align: center;
+}
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.row-item {
+  width: 50%;
+}
+.row-item > p {
+  text-align: center;
+  padding: 0.15rem;
+}
+#cash-lb {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
+
+#cash {
+  display: block;
+  width: 75%;
+  min-height: 1.5rem;
+  padding: 0.25rem;
+  margin: auto;
+  margin-top: 0.25rem;
+}
+
+#purchase-btn {
+  width: 50%;
+  display: block;
+  padding: 0.5em 1em;
+  border-radius: 0;
+  border: 2px solid;
+  margin:  0.5rem auto 1rem auto;/*
+  font-size: 1rem;*/
+  background-color: #fff8;
+  font-weight: bold;
+  transition: 350ms;
+}
+
+#purchase-btn:hover {
+  background-color: #fbf9f7;
+  color: #2c8522;
+}
+
+
+** end of undefined **
+
+** start of undefined **
+
+let price = /**1.87;*/ 19.5;
+let cid = /**[
+  ["PENNY", 1.01],
+  ["NICKEL", 2.05],
+  ["DIME", 3.1],
+  ["QUARTER", 4.25],
+  ["ONE", 90],
+  ["FIVE", 55],
+  ["TEN", 20],
+  ["TWENTY", 60],
+  ["ONE HUNDRED", 100]
+];*/
+[["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]];
+
+const table = [
+  {name:"PENNY", value: 1},
+  {name:"NICKEL", value: 5},
+  {name:"DIME", value: 10},
+  {name:"QUARTER", value: 25},
+  {name:"ONE", value: 100},
+  {name:"FIVE", value: 500},
+  {name:"TEN", value: 1000},
+  {name:"TWENTY", value: 2000},
+  {name:"ONE HUNDRED", value: 10000},
+];
+
+const cashInput = document.getElementById('cash');
+const purchaseBtn = document.getElementById('purchase-btn');
+const changeDue = document.getElementById('change-due');
+const priceSpan = document.getElementById('price');
+
+
+
+const processPurchase = (price, cash, cid) => {
+  const drawer = cid.map((e) => [e[0], Math.ceil(e[1]*100)]);
+  const drawerAfter = cid.map((e) => [e[0], Math.ceil(e[1]*100)]);
+  let changeLeft = (cash * 100) - (price * 100);
+  let delivered = [];
+
+  for (let i = table.length - 1; i >= 0 && changeLeft > 0; i--) {
+    let hand = 0;
+    const canDraw = () => (changeLeft - hand) >= table[i].value;
+    const hasInDraw = () => (drawer[i][1] - hand) > 0;
+
+    while (canDraw() && hasInDraw() && changeLeft > 0) {
+      hand += table[i].value;
+    }
+    
+    if (hand > 0) {
+      drawerAfter[i][1] -= hand;
+      changeLeft -= hand;
+      delivered.push([table[i].name,hand]);
+    } else if (changeLeft > table[i].value) {
+      delivered.push([table[i].name,0]);
+    }
+  }
+
+  return {
+      change: delivered.map((e) => [e[0], e[1] / 100.0]),
+      cid: drawerAfter.map((e) => [e[0], e[1] / 100.0])
+    };
+}
+
+const amountIn = (drawer) => drawer.reduce((acc,e) => acc + e[1],0);
+
+const parseDrawer = (drawer) => drawer.map((e) => `<p>${e[0]}: $${e[1]}</p>`).join('');
+
+const updateChangeDue = () => {
+
+  changeDue.innerHTML = 'Change Due';
+
+  if(!cashInput.value) {
+    return;
+  }
+
+  const cash = Number(cashInput.value);
+
+  cashInput.value = '';
+
+  if (cash < price) {
+    alert('Customer does not have enough money to purchase the item');
+    return;
+  }
+
+  if (cash === price) {
+    changeDue.innerHTML = '<p>No change due - customer paid with exact cash</p>';
+    return;
+  }
+  
+  const result = processPurchase(price, cash, cid);
+
+  if (amountIn(result.change) < (cash - price)) {
+    changeDue.innerHTML = '<p>Status: INSUFFICIENT_FUNDS</p>';
+    return;
+  }
+
+  if (amountIn(cid) === (cash - price)) {
+    changeDue.innerHTML = '<p>Status: OPEN</p>';
+  }
+
+  if (amountIn(cid) > (cash - price)) {
+    changeDue.innerHTML = '<p>Status: OPEN</p>';
+  }
+  
+  changeDue.innerHTML += parseDrawer(result.change);
+  cid = result.cid;
+  console.log(cid)
+  return;
+};
+
+purchaseBtn.addEventListener('click', updateChangeDue);
+
+cashInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    updateChangeDue();
+  }
+});
+
+const updatePrice = () => {
+  priceSpan.textContent = price;
+};
+updatePrice();
+
+
+'Status: CLOSED'
+'Status: OPEN'
+
+/*
+const testAll = () => {
+  const tests = [
+    {price: 19.5, cash: 20, cid: [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]},
+    {price: 3.26, cash: 100, cid: [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]},
+    {price: 19.5, cash: 20, cid: [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]},
+    {price: 19.5, cash: 20, cid: [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]},
+    {price: 19.5, cash: 20, cid: [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]}
+  ];
+  tests.forEach((tst) => {
+    console.log('tst',tst, 'delivered',processPurchase(tst.price, tst.cash, tst.cid).drawerAfter);
+  });
+}
+testAll();*/
+
+** end of undefined **
+
